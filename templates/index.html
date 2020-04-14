@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<link>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="../static/fontawesome.min.css">
+<link rel="stylesheet" href="../static/style.css"/>
+<title>MLB Stats</title>
+</head>
+<body>
+<h1 class="text-center">Sprague's Stats</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 text-center"><b>League</b></div>
+        <div class="col-md-6 text-center"><a href="#"><b>Reds</b></a></div>
+    </div>
+    <hr>
+    <h2 class="text-center">Standings</h2>
+    <div class="text-center">
+        <h4>Enter Year to View</h4>
+        <input name="st_input"/>
+        <input type="submit"/>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <h3 style="padding-bottom: 20px"><b>American League</b></h3>
+            <h4>East Division</h4>
+            <table class="table" cellpadding="10px">
+                <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Wins</th>
+                    <th>Loses</th>
+                    <th>W-L %</th>
+                    <th>GB</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in range(0, 5) %}
+                    {% set j = 0 %}
+                    <tr>
+                        <td>{{ alea_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ alea_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ alea_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ alea_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ alea_data[j][i] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <h4>Central Division</h4>
+            <table class="table" cellpadding="10px">
+                <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Wins</th>
+                    <th>Loses</th>
+                    <th>W-L %</th>
+                    <th>GB</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in range(0, 5) %}
+                    {% set j = 0 %}
+                    <tr>
+                        <td>{{ alct_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ alct_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ alct_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ alct_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ alct_data[j][i] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <h4>West Division</h4>
+            <table class="table" cellpadding="10px">
+                <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Wins</th>
+                    <th>Loses</th>
+                    <th>W-L %</th>
+                    <th>GB</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in range(0, 5) %}
+                    {% set j = 0 %}
+                    <tr>
+                        <td>{{ alwt_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ alwt_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ alwt_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ alwt_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ alwt_data[j][i] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- End American League -->
+        <!-- National League -->
+        <div class="col-md-6 text-center">
+            <h3 style="padding-bottom: 20px"><b>National League</b></h3>
+            <h4>East Division</h4>
+            <table class="table" cellpadding="10px">
+                <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Wins</th>
+                    <th>Loses</th>
+                    <th>W-L %</th>
+                    <th>GB</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in range(0, 5) %}
+                    {% set j = 0 %}
+                    <tr>
+                        <td>{{ nlea_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ nlea_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ nlea_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ nlea_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ nlea_data[j][i] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <h4>Central Division</h4>
+            <table class="table" cellpadding="10px">
+                <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Wins</th>
+                    <th>Loses</th>
+                    <th>W-L %</th>
+                    <th>GB</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in range(0, 5) %}
+                    {% set j = 0 %}
+                    <tr>
+                        <td>{{ nlct_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ nlct_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ nlct_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ nlct_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ nlct_data[j][i] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <h4>West Division</h4>
+            <table class="table" cellpadding="10px">
+                <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Wins</th>
+                    <th>Loses</th>
+                    <th>W-L %</th>
+                    <th>GB</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in range(0, 5) %}
+                    {% set j = 0 %}
+                    <tr>
+                        <td>{{ nlwt_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ nlwt_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ nlwt_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ nlwt_data[j][i] }}</td>
+                        {% set j = j + 1 %}
+                        <td>{{ nlwt_data[j][i] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- End National League -->
+</div>
+</div>
+<canvas id="myChart"></canvas>
+<!--
+<script>
+    const getData = $.get('/data');
+    const ctx = document.getElementById('myChart').getContext('2d');
+    let myChart;
+
+    getData.done(function (results) {
+        myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+                datasets: [{
+                    label: 'First Dataset',
+                    data: results.results,
+                    backgroundColor: [
+                        '#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6'
+                    ],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+
+                scales: {
+                    xAxes: [
+                        {
+                            scaleLabel: {
+                                display: false,
+                                labelString: "Name",
+                            },
+                            ticks: {
+                                autoSkip: false,
+                            },
+                        },
+                    ],
+                    yAxes: [
+                        {
+                            ticks: {
+                                max: 12,
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Weight (lbs)",
+                            },
+                        },
+                    ],
+                },
+            }
+        });
+
+    });
+
+
+</script>
+-->
+</body>
+</html>
