@@ -6,7 +6,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link rel="stylesheet" href="../static/fontawesome.min.css">
 <link rel="stylesheet" href="../static/style.css"/>
 <title>MLB Stats</title>
 </head>
@@ -20,10 +19,15 @@
     <hr>
     <h2 class="text-center">Standings</h2>
     <div class="text-center">
-        <h4>Enter Year to View</h4>
-        <input name="st_input"/>
-        <input type="submit"/>
-
+        <h4>Select Year to View</h4>
+        <form method="get">
+            <select name="years" method="GET" action="/">
+                {% for year in years %}
+                    <option value="{{ year }}" SELECTED>{{ year }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Show</button>
+        </form>
     </div>
     <div class="row">
         <div class="col-md-6 text-center">
@@ -40,50 +44,38 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for i in range(0, 5) %}
-                    {% set j = 0 %}
+                {% for i in range(alea_data|count) %}
                     <tr>
-                        <td>{{ alea_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ alea_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ alea_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ alea_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ alea_data[j][i] }}</td>
+                        {% for j in range(alea_data|count) %}
+                            <td>{{ alea_data[i][j] }}</td>
+                        {% endfor %}
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
-            <h4>Central Division</h4>
-            <table class="table" cellpadding="10px">
-                <thead>
-                <tr>
-                    <th>Team</th>
-                    <th>Wins</th>
-                    <th>Loses</th>
-                    <th>W-L %</th>
-                    <th>GB</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for i in range(0, 5) %}
-                    {% set j = 0 %}
+            {% if year > 1993 %}
+                <h4>Central Division</h4>
+                <table class="table" cellpadding="10px">
+                    <thead>
                     <tr>
-                        <td>{{ alct_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ alct_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ alct_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ alct_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ alct_data[j][i] }}</td>
+                        <th>Team</th>
+                        <th>Wins</th>
+                        <th>Loses</th>
+                        <th>W-L %</th>
+                        <th>GB</th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {% for i in range(alct_data|count) %}
+                        <tr>
+                            {% for j in range(alct_data|count) %}
+                                <td>{{ alct_data[i][j] }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
             <h4>West Division</h4>
             <table class="table" cellpadding="10px">
                 <thead>
@@ -96,18 +88,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for i in range(0, 5) %}
-                    {% set j = 0 %}
+                {% for i in range(alwt_data|count) %}
                     <tr>
-                        <td>{{ alwt_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ alwt_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ alwt_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ alwt_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ alwt_data[j][i] }}</td>
+                        {% for j in range(alwt_data|count) %}
+                            <td>{{ alwt_data[i][j] }}</td>
+                        {% endfor %}
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -129,50 +114,38 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for i in range(0, 5) %}
-                    {% set j = 0 %}
+                {% for i in range(nlea_data|count) %}
                     <tr>
-                        <td>{{ nlea_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ nlea_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ nlea_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ nlea_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ nlea_data[j][i] }}</td>
+                        {% for j in range(nlea_data|count) %}
+                            <td>{{ nlea_data[i][j] }}</td>
+                        {% endfor %}
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
-            <h4>Central Division</h4>
-            <table class="table" cellpadding="10px">
-                <thead>
-                <tr>
-                    <th>Team</th>
-                    <th>Wins</th>
-                    <th>Loses</th>
-                    <th>W-L %</th>
-                    <th>GB</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for i in range(0, 5) %}
-                    {% set j = 0 %}
+            {% if year > 1993 %}
+                <h4>Central Division</h4>
+                <table class="table" cellpadding="10px">
+                    <thead>
                     <tr>
-                        <td>{{ nlct_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ nlct_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ nlct_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ nlct_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ nlct_data[j][i] }}</td>
+                        <th>Team</th>
+                        <th>Wins</th>
+                        <th>Loses</th>
+                        <th>W-L %</th>
+                        <th>GB</th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {% for i in range(nlct_data|count) %}
+                        <tr>
+                            {% for j in range(nlct_data|count) %}
+                                <td>{{ nlct_data[i][j] }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
             <h4>West Division</h4>
             <table class="table" cellpadding="10px">
                 <thead>
@@ -185,22 +158,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for i in range(0, 5) %}
-                    {% set j = 0 %}
+                {% for i in range(nlwt_data|count) %}
                     <tr>
-                        <td>{{ nlwt_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ nlwt_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ nlwt_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ nlwt_data[j][i] }}</td>
-                        {% set j = j + 1 %}
-                        <td>{{ nlwt_data[j][i] }}</td>
+                        {% for j in range(nlwt_data|count) %}
+                            <td>{{ nlwt_data[i][j] }}</td>
+                        {% endfor %}
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
+
         </div>
     </div>
     <!-- End National League -->
@@ -258,8 +225,6 @@
         });
 
     });
-
-
 </script>
 -->
 </body>
