@@ -10,12 +10,57 @@
 <title>MLB Stats</title>
 </head>
 <body>
+
+<div class="mainNav">
+    <a href="index.html">Home</a>
+    <div class="yearDrop">
+        <button class="btn">View Years</button>
+        <div class="content">
+            <div class="row">
+                <form method="get">
+                    <div class="column">
+                        <h3>Years1 ...</h3>
+                        {% for i in range(0, 10) %}
+                            <a onclick="$(#submit).trigger('click')">{{ years[i] }}</a>
+                        {% endfor %}
+                        <input style="display:none;" type="submit" id="submit"/>
+                    </div>
+                    <div class="column">
+                        <h3>Years2 ...</h3>
+                        {% for i in range(10, 20) %}
+                            <a onclick="$(#submit).trigger('click')">{{ years[i] }}</a>
+                        {% endfor %}
+                        <input style="display:none;" type="submit" id="submit"/>
+                    </div>
+                    <div class="column">
+                        <h3>Years3 ...</h3>
+                        {% for i in range(20, 30) %}
+                            <a onclick="$(#submit).trigger('click')">{{ years[i] }}</a>
+                        {% endfor %}
+                        <input style="display:none;" type="submit" id="submit"/>
+                    </div>
+                    <div class="column">
+                        <h3>Years4 ...</h3>
+                        {% for i in range(30, 40) %}
+                            <a onclick="$(#submit).trigger('click')">{{ years[i] }}</a>
+                        {% endfor %}
+                        <input style="display:none;" type="submit" id="submit"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <h1 class="text-center">Sprague's Stats</h1>
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 text-center"><b>League</b></div>
-        <div class="col-md-6 text-center"><a href="#"><b>Reds</b></a></div>
-    </div>
+    <!--
+        <div class="row">
+            <div class="col-md-6 text-center"><b>League</b></div>
+            <div class="col-md-6 text-center"><a href="#"><b>Reds</b></a></div>
+        </div>
+        -->
     <hr>
     <h2 class="text-center">Standings</h2>
     <div class="text-center">
@@ -23,38 +68,20 @@
         <form method="get">
             <select name="years" method="GET" action="/">
                 {% for year in years %}
-                    <option value="{{ year }}" SELECTED>{{ year }}</option>
+                    <option value="{{ year }}">{{ year }}</option>
                 {% endfor %}
             </select>
             <button type="submit">Show</button>
         </form>
+        <div>
+            <h4 style="padding: 20px">{{ year }} MLB Season</h4>
+        </div>
     </div>
-    <div class="row">
-        <div class="col-md-6 text-center">
-            <h3 style="padding-bottom: 20px"><b>American League</b></h3>
-            <h4>East Division</h4>
-            <table class="table" cellpadding="10px">
-                <thead>
-                <tr>
-                    <th>Team</th>
-                    <th>Wins</th>
-                    <th>Loses</th>
-                    <th>W-L %</th>
-                    <th>GB</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for i in range(alea_data|count) %}
-                    <tr>
-                        {% for j in range(alea_data|count) %}
-                            <td>{{ alea_data[i][j] }}</td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            {% if year > 1993 %}
-                <h4>Central Division</h4>
+    {% if year > 1968 %}
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <h3 style="padding-bottom: 20px"><b>American League</b></h3>
+                <h4>East Division</h4>
                 <table class="table" cellpadding="10px">
                     <thead>
                     <tr>
@@ -66,65 +93,39 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for i in range(alct_data|count) %}
+                    {% for i in range(alea_data|count) %}
                         <tr>
-                            {% for j in range(alct_data|count) %}
-                                <td>{{ alct_data[i][j] }}</td>
+                            {% for j in range(alea_data|count) %}
+                                <td>{{ alea_data[i][j] }}</td>
                             {% endfor %}
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
-            {% endif %}
-            <h4>West Division</h4>
-            <table class="table" cellpadding="10px">
-                <thead>
-                <tr>
-                    <th>Team</th>
-                    <th>Wins</th>
-                    <th>Loses</th>
-                    <th>W-L %</th>
-                    <th>GB</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for i in range(alwt_data|count) %}
-                    <tr>
-                        {% for j in range(alwt_data|count) %}
-                            <td>{{ alwt_data[i][j] }}</td>
+                {% if year > 1993 %}
+                    <h4>Central Division</h4>
+                    <table class="table" cellpadding="10px">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Wins</th>
+                            <th>Loses</th>
+                            <th>W-L %</th>
+                            <th>GB</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in range(alct_data|count) %}
+                            <tr>
+                                {% for j in range(alct_data|count) %}
+                                    <td>{{ alct_data[i][j] }}</td>
+                                {% endfor %}
+                            </tr>
                         {% endfor %}
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <!-- End American League -->
-        <!-- National League -->
-        <div class="col-md-6 text-center">
-            <h3 style="padding-bottom: 20px"><b>National League</b></h3>
-            <h4>East Division</h4>
-            <table class="table" cellpadding="10px">
-                <thead>
-                <tr>
-                    <th>Team</th>
-                    <th>Wins</th>
-                    <th>Loses</th>
-                    <th>W-L %</th>
-                    <th>GB</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for i in range(nlea_data|count) %}
-                    <tr>
-                        {% for j in range(nlea_data|count) %}
-                            <td>{{ nlea_data[i][j] }}</td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            {% if year > 1993 %}
-                <h4>Central Division</h4>
+                        </tbody>
+                    </table>
+                {% endif %}
+                <h4>West Division</h4>
                 <table class="table" cellpadding="10px">
                     <thead>
                     <tr>
@@ -136,96 +137,148 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for i in range(nlct_data|count) %}
+                    {% for i in range(alwt_data|count) %}
                         <tr>
-                            {% for j in range(nlct_data|count) %}
-                                <td>{{ nlct_data[i][j] }}</td>
+                            {% for j in range(alwt_data|count) %}
+                                <td>{{ alwt_data[i][j] }}</td>
                             {% endfor %}
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
-            {% endif %}
-            <h4>West Division</h4>
-            <table class="table" cellpadding="10px">
-                <thead>
-                <tr>
-                    <th>Team</th>
-                    <th>Wins</th>
-                    <th>Loses</th>
-                    <th>W-L %</th>
-                    <th>GB</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for i in range(nlwt_data|count) %}
+            </div>
+            <!-- End American League -->
+            <!-- National League -->
+            <div class="col-md-6 text-center">
+                <h3 style="padding-bottom: 20px"><b>National League</b></h3>
+                <h4>East Division</h4>
+                <table class="table" cellpadding="10px">
+                    <thead>
                     <tr>
-                        {% for j in range(nlwt_data|count) %}
-                            <td>{{ nlwt_data[i][j] }}</td>
-                        {% endfor %}
+                        <th>Team</th>
+                        <th>Wins</th>
+                        <th>Loses</th>
+                        <th>W-L %</th>
+                        <th>GB</th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {% for i in range(nlea_data|count) %}
+                        <tr>
+                            {% for j in range(nlea_data|count) %}
+                                <td>{{ nlea_data[i][j] }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% if year > 1993 %}
+                    <h4>Central Division</h4>
+                    <table class="table" cellpadding="10px">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Wins</th>
+                            <th>Loses</th>
+                            <th>W-L %</th>
+                            <th>GB</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in range(nlct_data|count) %}
+                            <tr>
+                                {% for j in range(nlct_data|count) %}
+                                    <td>{{ nlct_data[i][j] }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+                <h4>West Division</h4>
+                <table class="table" cellpadding="10px">
+                    <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>Wins</th>
+                        <th>Loses</th>
+                        <th>W-L %</th>
+                        <th>GB</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in range(nlwt_data|count) %}
+                        <tr>
+                            {% for j in range(nlwt_data|count) %}
+                                <td>{{ nlwt_data[i][j] }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
 
+            </div>
         </div>
-    </div>
-    <!-- End National League -->
+        <!-- End National League -->
+    {% endif %}
 </div>
 </div>
-<canvas id="myChart"></canvas>
-<!--
-<script>
-    const getData = $.get('/data');
-    const ctx = document.getElementById('myChart').getContext('2d');
-    let myChart;
+{% if year < 1969 %}
+    <div>
+        <canvas id="myChart" width="500" height="500"></canvas>
 
-    getData.done(function (results) {
-        myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-                datasets: [{
-                    label: 'First Dataset',
-                    data: results.results,
-                    backgroundColor: [
-                        '#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6'
-                    ],
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
+        <script>
+            const getData = $.get('/data');
+            const ctx = document.getElementById('myChart').getContext('2d');
+            let myChart;
 
-                scales: {
-                    xAxes: [
-                        {
-                            scaleLabel: {
-                                display: false,
-                                labelString: "Name",
-                            },
-                            ticks: {
-                                autoSkip: false,
-                            },
-                        },
-                    ],
-                    yAxes: [
-                        {
-                            ticks: {
-                                max: 12,
-                            },
-                            scaleLabel: {
-                                display: true,
-                                labelString: "Weight (lbs)",
-                            },
-                        },
-                    ],
+            myChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: [{% for i in range(0, size) %}
+                        "{{ older_data[i][0] }}",
+                    {% endfor %}],
+                    datasets: [{
+                        label: false,
+                        data: [{% for i in range(0, size) %}
+                            "{{ older_data[i][4] }}",
+                        {% endfor %}],
+                        backgroundColor: [{% for i in range(0, 20) %}
+                            "{{ bc[i] }}",
+                        {% endfor %}],
+                    }]
                 },
-            }
-        });
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scaleBeginAtZero: false,
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        xAxes: [
+                            {
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "Wins",
+                                },
+                            },
+                        ],
+                        yAxes: [
+                            {
+                                scaleLabel: {
+                                    display: false,
+                                    labelString: "",
+                                },
+                            },
+                        ],
+                    },
+                }
+            });
 
-    });
-</script>
--->
+        </script>
+    </div>>
+{% endif %}
+
 </body>
 </html>
