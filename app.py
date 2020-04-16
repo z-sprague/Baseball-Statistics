@@ -47,9 +47,9 @@ def chart():
                            boc=boc, size=size)
 
 
-@app.route('/data')
+@app.route('/', methods=['GET'])
 def league_data():
-    return jsonify({'results': sample(range(1, 10), 5)})
+    return None
 
 
 if __name__ == '__main__':

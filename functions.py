@@ -10,7 +10,8 @@ bar_colors = ['rgb(245, 140, 144, .7)','rgb(71, 146, 173, .7)','rgb(30, 122, 60,
               'rgb(149, 155, 89, .7)','rgb(42, 49, 10, .7)','rgb(107, 72, 87, .7)','rgb(104, 13, 228, .7)','rgb(5, 246, 62, .7)']
 
 # 1994 start of 5 teams per division
-# data = standings(1960)
+#data = standings(1960)
+#print(data)
 
 def get_data(year, div_id=0):
     league_data = standings(year)[div_id].values

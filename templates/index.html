@@ -6,6 +6,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 <link rel="stylesheet" href="../static/style.css"/>
 <title>MLB Stats</title>
 </head>
@@ -224,6 +225,36 @@
 </div>
 </div>
 {% if year < 1969 %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 style="padding-bottom: 20px"><b>National & American League</b></h3>
+                <table class="table" cellpadding="10px">
+                    <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>Abbreviation</th>
+                        <th>League</th>
+                        <th>Games</th>
+                        <th>Wins</th>
+                        <th>Loses</th>
+                        <th>W-L %</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in range(0, size) %}
+                        <tr>
+                            {% for j in range(0, older_data[0]|count) %}
+                                <td>{{ older_data[i][j] }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--
     <div>
         <canvas id="myChart" width="500" height="500"></canvas>
 
@@ -236,12 +267,12 @@
                 type: 'horizontalBar',
                 data: {
                     labels: [{% for i in range(0, size) %}
-                        "{{ older_data[i][0] }}",
+                        "{{ older_data[i][0] + " (" + older_data[i][2] + ")"}}",
                     {% endfor %}],
                     datasets: [{
                         label: false,
                         data: [{% for i in range(0, size) %}
-                            "{{ older_data[i][4] }}",
+                            "{{ older_data[i][4]}}",
                         {% endfor %}],
                         backgroundColor: [{% for i in range(0, 20) %}
                             "{{ bc[i] }}",
@@ -277,7 +308,8 @@
             });
 
         </script>
-    </div>>
+    </div>
+    -->
 {% endif %}
 
 </body>
